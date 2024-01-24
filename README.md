@@ -3,7 +3,9 @@
 
 ##### 2. #include <iomanip>와 long double
 #include <iomanip>와 long double을 이용하면
+
   cout << fixed << setprecision(100) << p;
+  
 꼴로 작성하여 고정소숫점 표기법(fixed)으로 소숫점 아래 100째자리까지(set precision) 출력할 수 있다.
 
 
