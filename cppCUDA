@@ -1,11 +1,22 @@
+/*
+작업 수행하는 코드
+*/
+
 #include <stdio.h>
  
 void CPUFunction()
 {
     printf("This function is defined to run on the CPU.\n");
 }
- 
-__global__ void GPUFunction()
+
+/* _global__ : GPU, CPU 모두에 의해 호출될 수 있는 함수.
+host 코드 : CPU에 의해 실행
+device 코드 : GPU에 의해 실행
+__global__로 선언한 함수는 반드시 void.
+정의한 GPU함수를 Kernel
+*/
+
+__global__ void GPUFunction() 
 {
     printf("This function is defined to run on the GPU.\n");
 }
@@ -14,6 +25,34 @@ int main()
 {
     CPUFunction();
  
-    GPUFunction<<<1, 1>>>();
+    GPUFunction<<<1, 1>>>(); //Launch Kernel
+    cudaDeviceSynchronize(); //CUDA API 호출하여 CPU GPU 동기화
+}
+
+
+
+/*
+아래 코드는 CUDA 파일에 들어가는 코드입니다. .cu 확장자.
+*/
+
+// 01_hello-gpu.cu
+#include <stdio.h>
+ 
+void helloCPU()
+{
+    
+}
+ 
+__global__ void helloGPU()
+{
+    
+}
+ 
+int main()
+{
+    helloCPU();
+ 
+    helloGPU<<<1, 1>>>();
     cudaDeviceSynchronize();
 }
+
