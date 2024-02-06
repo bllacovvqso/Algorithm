@@ -1,14 +1,4 @@
-# 각종 최적화
-##### 1. fastio
-
-##### 2. #include <iomanip>와 long double
-#include <iomanip>와 long double을 이용하면
-
-    cout << fixed << setprecision(100) << p;
-  
-꼴로 작성하여 고정소숫점 표기법(fixed)으로 소숫점 아래 100째자리까지(set precision) 출력할 수 있다.
-
-##### 3. Gaussian Elimination
+# Gaussian Elimination
 연립방정식을 풀기 위해 문자의 계수를 행렬로 모으고 답을 포함하는 REF(Row Echelon Form matrix)로 변환하는 풀이이다.
 
     #include <iostream>
@@ -77,7 +67,6 @@ ab.cdefg... 가 정수에 최대한 가까운 수를 찾는 것이다.
 
 ##### 1. 고려사항
 1. N 범위가 7부터 1e14이므로 eGPU 가속이 필요하다.
-2. fastio 최적화
 
 
 
