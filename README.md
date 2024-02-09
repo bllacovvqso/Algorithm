@@ -178,3 +178,61 @@ ab.cdefg... 가 정수에 최대한 가까운 수를 찾는 것이다.
 
         cout << slvSum(L, U);
     }
+
+
+
+#std:map
+BOJ11444와 같은 경우를 보면 dp도 항상 배열이 아닌 적당한 자료구조에 해야 함을 알 수 있다.
+
+    #include <iostream>
+    #define lint unsigned long int
+    const int max_size = 10000000;
+    using namespace std;
+    
+    int fibo(lint n);
+    
+    int mod = 1000000007;
+    lint n, tmp1, tmp2, tmp3;
+    int dp[max_size];
+    
+    int main()
+    {
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 1;
+        for (int i = 1; i <= 10000; i++) {
+    
+        cin >> n;
+        cout << fibo(n);
+        }
+    }
+    int fibo(lint n)
+    {
+      if (n < max_size && dp[n]!=0) return dp[n]; 
+      if (n == 0) return 0;
+      if (n%2)
+      {
+        tmp1 = fibo((n+1)/2)*fibo((n+1)/2);
+        tmp2 = fibo((n-1)/2)*fibo((n-1)/2);
+        tmp3=(tmp1%mod+tmp2%mod)%mod;
+        if(n < max_size)
+        {
+            dp[n]= tmp3;
+            return dp[n];
+        } 
+        return tmp3;
+      }
+      else
+      {
+        tmp1 = 2*fibo(n/2-1)+fibo(n/2);
+        tmp2 = (fibo(n/2)*(tmp1%mod))%mod;
+        if(n < max_size)
+        {
+            dp[n] = tmp2;
+            return dp[n];
+        }
+        return tmp2; 
+      }
+    }
+
+이 문제 특성 상 사용하는 배열에 버려지는 칸이 있으면 TL이 되는데, 사용한 점화식은 f(n/2)를 저장하기 때문에 배열에 버려지는 칸이 너무 많아진다. 따라서 map을 사용해야 한다.
