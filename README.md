@@ -73,3 +73,68 @@ ab.cdefg... 가 정수에 최대한 가까운 수를 찾는 것이다.
 
 
 ### BOJ21298
+
+### BOJ30641
+거듭제곱을 여러번 더할 때 그 시간 복잡도를 줄이기 위해선 따로 거듭제곱을 계산하는 함수를 호출하기보다 DP를 해야 한다. 이때 굳이 배열은 필요 없고 아래와 같이 하면 된다.
+ ##### 시간 초과 코드
+     #include <iostream>
+    #define lint long long int
+    
+    using namespace std;
+    
+    lint sum;
+    lint mod = 1000000007;
+    
+    lint powmod(lint n)  
+    {
+        lint res = 1;
+    	if (n == 0) return 1;
+        for (lint i = 1; i <= n; i++)
+        {
+            res *= 26; 
+            res %= mod;
+        }
+        
+        return res;
+    }
+    
+    
+    lint slvSum(lint L, lint U)
+    {	
+    	lint lTmp = (L-1)/2;
+    	lint uTmp = (U-1)/2;
+    	
+    	if(L == U) return powmod(lTmp);
+    	else if (lTmp == uTmp) return (2*powmod(lTmp))%mod;
+    	
+    	if (L%2) sum += 2*powmod(lTmp); 
+    	else sum += powmod(lTmp);
+    	
+    	if (U%2) sum += powmod(uTmp);
+    	else sum += 2*powmod(uTmp);
+    	
+    	if (uTmp-lTmp >= 2)
+    	{
+    		for (int i = lTmp+1; i <= uTmp-1; i++)
+    		{
+    			sum += powmod(i);
+    			sum %= mod;
+    		}
+    		sum *= 2;	
+    	}
+    	
+    	return sum%mod;
+    }
+    
+    int main()
+    {
+        lint L, U;
+        cin >> L >> U;
+        
+        if (L == 2 && U == 2) cout << "H" << '\n'; 
+        else if (L == 1 && U == 1) cout << "H" << '\n';
+        else if (L == 2) cout << "H" << '\n';
+    	else cout << "A" << '\n';
+    	
+        cout << slvSum(L, U);
+    }
