@@ -138,3 +138,45 @@ ab.cdefg... 가 정수에 최대한 가까운 수를 찾는 것이다.
     	
         cout << slvSum(L, U);
     }
+
+이걸 수정해주면 다음과 같다.
+    #include <iostream>
+    #define lint long long int
+    
+    using namespace std;
+    
+    lint sum;
+    lint mod = 1000000007;
+    
+    
+    
+    lint slvSum(lint L, lint U)
+    {	
+    	lint multi = 1;
+    	
+    	for (int i = 1; i <= U; ++i)
+        {
+        	if (i <= 2 && i >= L) sum += 1;
+        	else if (i <= 2) continue;
+        	else
+        	{
+        		if (i % 2 == 1) multi = (multi * 26) % mod;
+          		if (i >= L) sum = (sum + multi) % mod;	
+    		}
+        }
+        
+    	return sum;
+    }
+    
+    int main()
+    {
+        lint L, U;
+        cin >> L >> U;
+        
+        if (L == 2 && U == 2) cout << "H" << '\n'; 
+        else if (L == 1 && U == 1) cout << "H" << '\n';
+        else if (L == 2) cout << "H" << '\n';
+    	else cout << "A" << '\n';
+    	
+        cout << slvSum(L, U);
+    }
