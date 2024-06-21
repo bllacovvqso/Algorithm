@@ -83,7 +83,7 @@ void FFT(vector<lint> &v, lint w){
     }
 }
 ```
-# 3. Convolution with mod, FFT with mod.
+# 3. Convolution with mod, FFT with AVX
 ```cpp
 namespace fft{  
     
