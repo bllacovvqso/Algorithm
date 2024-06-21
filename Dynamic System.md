@@ -61,7 +61,6 @@ plt.tight_layout()
 
 # 3. Cobweb Plot
 ```cpp
-#map
 import numpy as np
 import matplotlib.pyplot as plt
 
