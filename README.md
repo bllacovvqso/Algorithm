@@ -1,1 +1,8 @@
-복잡한 알고리즘
+tag::
+- Alien Trick
+- PBS
+- Segment Tree
+- Simulated Annealing
+- Flood Fill
+- CZT
+- Randomization
