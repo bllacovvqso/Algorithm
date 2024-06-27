@@ -70,3 +70,17 @@ int main() {
 }
 
 ```
+
+## 0. Gaussian Elimination
+ 선형 시스템의 해를 구할 때는 가우스 소거법이 유용하다. 연립일차방정식을 행사다리꼴 행렬(REF, Row Echelon Form)로 변환하여 나타내는 것인데, 아래 예시를 참고하자.
+ 
+ 위와 같이 $Ax=B$라는 선형시스템을 계수행렬 $A$와 상수항 벡터 $b$로 나누고 이를 결합시킨 첨가행렬, Augmented Matrix를 얻을 수 있다. 이때 Elementary Row Operation이라는 연산을 통해 Augmented Matrix를 REF로 조작할 수 있다.
+ 
+ 
+ 그림과 같이 주대각선 좌측 하단의 성분이 모두 0으로 변환된 것이 REF이며 이렇게 정리돼야 해가 쉽게 구해진다. 
+ 
+ 
+ ## 1. Consistency of Roots
+ 한편, 선형시스템의 해의 존재성은 pivot을 통해 알 수 있다. pivot은 REF의 각 행에서 처음으로 나타나는 0이 아닌 성분을 지칭한다. 
+
+ RREF(Reduced REF)
